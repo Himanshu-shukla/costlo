@@ -1,0 +1,180 @@
+@import "../../Constants.scss";
+
+@mixin facility-card($bg-color, $hover-bg-color, $text-color, $hover-text-color, $border-color) {
+  background: linear-gradient(135deg, $bg-color 0%, lighten($bg-color, 3%) 100%);
+  border: 2px solid $border-color;
+  
+  h2 {
+    color: $text-color;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, $hover-bg-color 0%, darken($hover-bg-color, 5%) 100%);
+    border-color: $hover-bg-color;
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+
+    h2,
+    p {
+      color: $hover-text-color;
+    }
+  }
+}
+
+.facilities_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+
+  .facilities_section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    width: 100%;
+
+    .facilities {
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      padding: 2rem;
+      text-align: left;
+      border-radius: 20px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, currentColor, transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      &:hover::before {
+        opacity: 1;
+      }
+
+      h2 {
+        font-family: $lobster;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.3;
+        transition: color 0.3s ease;
+      }
+
+      p {
+        color: $grey;
+        font-family: $heebo;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0;
+        transition: color 0.3s ease;
+        flex-grow: 1;
+        text-align: justify;
+      }
+
+      &:nth-child(1) {
+        @include facility-card(#fef7f4, #FE7C5D, #FE7C5D, #FFFFFF, #FE7C5D);
+      }
+
+      &:nth-child(2) {
+        @include facility-card(#fffcf0, #FFC107, #FFC107, #FFFFFF, #FFC107);
+      }
+
+      &:nth-child(3) {
+        @include facility-card(#f0f8f3, #198754, #198754, #FFFFFF, #198754);
+      }
+
+      &:nth-child(4) {
+        @include facility-card(#f0fbfd, #0DCAF0, #0DCAF0, #FFFFFF, #0DCAF0);
+      }
+    }
+  }
+}
+
+// Tablet styles
+@media (max-width: 768px) {
+  .facilities_container {
+    padding: 2rem 1rem;
+    
+    .facilities_section {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      
+      .facilities {
+        min-height: 250px;
+        padding: 1.5rem;
+        
+        h2 {
+          font-size: 1.4rem;
+        }
+        
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+// Mobile styles
+@media (max-width: 480px) {
+  .facilities_container {
+    padding: 1.5rem 0.5rem;
+    
+    .facilities_section {
+      gap: 1.5rem;
+      
+      .facilities {
+        min-height: 220px;
+        padding: 1.25rem;
+        border-radius: 16px;
+        
+        h2 {
+          font-size: 1.3rem;
+        }
+        
+        p {
+          font-size: 0.85rem;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+}
+
+// Large desktop styles
+@media (min-width: 1400px) {
+  .facilities_container {
+    .facilities_section {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 1400px;
+      
+      .facilities {
+        min-height: 300px;
+        padding: 2.5rem;
+        
+        h2 {
+          font-size: 1.6rem;
+        }
+        
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

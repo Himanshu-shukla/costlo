@@ -1,0 +1,19 @@
+@import "../../Constants.scss";
+
+.panchagDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; // left-align the text
+  margin: 1rem auto;       // center the block horizontally
+  width: 100%;
+  max-width: 600px;        // optional, prevents stretching too wide
+  padding: 1rem;
+
+  p {
+      text-align: left;
+      font-size: 1.3rem;
+      font-family: $heebo;
+    width: 100%;
+    margin: 0.3rem 0;
+  }
+}
