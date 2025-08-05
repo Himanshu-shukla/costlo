@@ -3,6 +3,8 @@ import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import { BACKEND_URL } from "../../config/config";
+
 const Contact = () => {
   const formRef = useRef();
 
@@ -17,20 +19,28 @@ const Contact = () => {
     theme: "light",
   };
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData(formRef.current);
+
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      message: formData.get("message"),
+    };
+
     try {
-      emailjs.sendForm(
-        "service_k3rx1j4",
-        "template_i7tgtej",
-        formRef.current,
-        "GFie4fUsUBaD8xdUr"
-      );
+      await axios.post(`${BACKEND_URL}/send-user-details`, data);
       toast.success("Mail sent successfully!", toastOptions);
-    } catch (error) {
+      formRef.current.reset();
+    } catch (err) {
+      console.error(err);
       toast.error("Unable to send mail!", toastOptions);
     }
   };
+  
   return (
     <>
       <div className="contact">
