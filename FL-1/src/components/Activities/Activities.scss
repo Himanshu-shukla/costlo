@@ -1,0 +1,316 @@
+@import "../../Constants.scss";
+
+
+.activities-container {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
+
+  .heading {
+    text-align: center;
+    font-size: 3rem;
+    font-family: $lobster;
+    color: $green;
+    margin-bottom: 3rem;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, $orange, #FFC107);
+      border-radius: 2px;
+    }
+  }
+
+  .activities {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 0;
+
+    .activity_card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      cursor: pointer;
+      border: 2px solid transparent;
+
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-color: $orange;
+      }
+
+      .activity_header {
+        background: linear-gradient(135deg, $lightOrange 0%, lighten($lightOrange, 10%) 100%);
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+          opacity: 0.3;
+        }
+
+        h2 {
+          font-family: $lobster;
+          font-size: 1.8rem;
+          color: $green;
+          margin: 0;
+          position: relative;
+          z-index: 1;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      .activity_content {
+        padding: 2rem;
+
+        .activity_description {
+          color: $grey;
+          font-family: $heebo;
+          font-size: 1rem;
+          line-height: 1.6;
+          margin-bottom: 2rem;
+          text-align: center;
+          min-height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .activity_footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 1.5rem;
+          padding-top: 1.5rem;
+          border-top: 2px solid #f0f0f0;
+
+          .activity_price {
+            font-family: $heebo;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: $green;
+            
+            .currency {
+              font-size: 0.9rem;
+              opacity: 0.8;
+            }
+          }
+
+          .activity_button {
+            background: linear-gradient(135deg, $orange 0%, darken($orange, 10%) 100%);
+            color: white;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            border-radius: 25px;
+            font-family: $heebo;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.8rem 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+
+            &::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: -100%;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+              transition: left 0.5s;
+            }
+
+            &:hover {
+              transform: translateY(-2px);
+              box-shadow: 0 5px 15px rgba(254, 124, 93, 0.4);
+              
+              &::before {
+                left: 100%;
+              }
+            }
+
+            &:active {
+              transform: translateY(0);
+            }
+          }
+        }
+      }
+
+      // Individual card color variations
+      &:nth-child(3n+1) {
+        .activity_header {
+          background: linear-gradient(135deg, #fef7f4 0%, #fef1ee 100%);
+        }
+        
+        .activity_button {
+          background: linear-gradient(135deg, #FE7C5D 0%, darken(#FE7C5D, 10%) 100%);
+          
+          &:hover {
+            box-shadow: 0 5px 15px rgba(254, 124, 93, 0.4);
+          }
+        }
+      }
+
+      &:nth-child(3n+2) {
+        .activity_header {
+          background: linear-gradient(135deg, #fffcf0 0%, #fff8e6 100%);
+        }
+        
+        .activity_button {
+          background: linear-gradient(135deg, #FFC107 0%, darken(#FFC107, 10%) 100%);
+          
+          &:hover {
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+          }
+        }
+      }
+
+      &:nth-child(3n+3) {
+        .activity_header {
+          background: linear-gradient(135deg, #f0f8f3 0%, #e8f3ed 100%);
+        }
+        
+        .activity_button {
+          background: linear-gradient(135deg, #198754 0%, darken(#198754, 10%) 100%);
+          
+          &:hover {
+            box-shadow: 0 5px 15px rgba(25, 135, 84, 0.4);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Tablet styles
+@media (max-width: 768px) {
+  .activities-container {
+    padding: 3rem 1rem;
+    
+    .heading {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .activities {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      
+      .activity_card {
+        .activity_header {
+          padding: 1.5rem;
+          
+          h2 {
+            font-size: 1.6rem;
+          }
+        }
+        
+        .activity_content {
+          padding: 1.5rem;
+          
+          .activity_description {
+            font-size: 0.9rem;
+            min-height: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Mobile styles
+@media (max-width: 480px) {
+  .activities-container {
+    padding: 2rem 0.5rem;
+    
+    .heading {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .activities {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      
+      .activity_card {
+        margin: 0 0.5rem;
+        
+        .activity_header {
+          padding: 1.25rem;
+          
+          h2 {
+            font-size: 1.4rem;
+          }
+        }
+        
+        .activity_content {
+          padding: 1.25rem;
+          
+          .activity_description {
+            font-size: 0.85rem;
+            min-height: 40px;
+          }
+          
+          .activity_footer {
+            flex-direction: column;
+            gap: 1rem;
+            
+            .activity_button {
+              width: 100%;
+              padding: 1rem 2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Large desktop styles
+@media (min-width: 1200px) {
+  .activities-container {
+    .activities {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1400px;
+      
+      .activity_card {
+        .activity_header {
+          h2 {
+            font-size: 1.9rem;
+          }
+        }
+        
+        .activity_content {
+          .activity_description {
+            font-size: 1.05rem;
+            min-height: 70px;
+          }
+        }
+      }
+    }
+  }
+}
