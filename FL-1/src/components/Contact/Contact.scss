@@ -178,3 +178,19 @@
         }
     }
 }
+
+.form-input {
+  width: 100%;               // 👈 ensures full width
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  background-color: #fff;
+  box-sizing: border-box;    // 👈 avoids overflow
+
+  &:focus {
+    border-color: #0077ff;
+    box-shadow: 0 0 4px rgba(0, 119, 255, 0.2);
+  }
+}

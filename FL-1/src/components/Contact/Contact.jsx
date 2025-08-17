@@ -1,12 +1,16 @@
 import "./Contact.scss";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 import { BACKEND_URL } from "../../config";
 import axios from "axios";
 
 const Contact = () => {
   const formRef = useRef();
+  const [dob, setDob] = useState(null);
+  const [tob, setTob] = useState(null);
 
   const toastOptions = {
     position: "bottom-center",
@@ -15,7 +19,6 @@ const Contact = () => {
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
-    progress: undefined,
     theme: "light",
   };
 
@@ -28,9 +31,12 @@ const Contact = () => {
       name: formData.get("name"),
       email: formData.get("email"),
       phone: formData.get("phone"),
-      dob: formData.get("dob"),         // ✅ Date of Birth
-      tob: formData.get("tob"),         // ✅ Time of Birth
-      pob: formData.get("pob"),         // ✅ Place of Birth
+      dob: dob ? dob.toISOString().split("T")[0] : "", // YYYY-MM-DD
+      tob: tob ? `${tob.getHours().toString().padStart(2, "0")}:${tob
+        .getMinutes()
+        .toString()
+        .padStart(2, "0")}` : "", // HH:mm
+      pob: formData.get("pob"),
       message: formData.get("message"),
     };
 
@@ -38,6 +44,8 @@ const Contact = () => {
       await axios.post(`${BACKEND_URL}/send-user-details`, data);
       toast.success("Mail sent successfully!", toastOptions);
       formRef.current.reset();
+      setDob(null);
+      setTob(null);
     } catch (err) {
       console.error(err);
       toast.error("Unable to send mail!", toastOptions);
@@ -68,7 +76,6 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* ✅ Updated Form */}
           <div className="contact_form">
             <form ref={formRef} onSubmit={sendEmail}>
               <input
@@ -94,20 +101,33 @@ const Contact = () => {
                 required
                 autoComplete="off"
                 pattern="[1-9]{1}[0-9]{9}"
+                title="Enter 10-digit phone number"
+                inputMode="numeric"
               />
 
               {/* ✅ Date of Birth */}
-              <input
-                type="date"
-                name="dob"
-                required
+              <DatePicker
+                selected={dob}
+                onChange={(date) => setDob(date)}
+                placeholderText="Date of Birth"
+                dateFormat="yyyy-MM-dd"
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+                 className="form-input"
               />
 
               {/* ✅ Time of Birth */}
-              <input
-                type="time"
-                name="tob"
-                required
+              <DatePicker
+                selected={tob}
+                onChange={(date) => setTob(date)}
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={15}
+                timeCaption="Time of Birth"
+                dateFormat="HH:mm"
+                placeholderText="Time of Birth"
+                 className="form-input"
               />
 
               {/* ✅ Place of Birth */}
@@ -119,11 +139,7 @@ const Contact = () => {
                 autoComplete="off"
               />
 
-              <textarea
-                rows={4}
-                placeholder="Message"
-                name="message"
-              ></textarea>
+              <textarea rows={4} placeholder="Message" name="message" />
 
               <button>Submit</button>
             </form>
@@ -144,19 +160,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <ToastContainer
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce}
-      />
+      <ToastContainer transition={Bounce} />
     </>
   );
 };
