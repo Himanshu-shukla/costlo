@@ -121,12 +121,12 @@ const activityData = [
     price: "$ 3000",
   },
 
-  {
-    key: 15,
-    activity: "Learn Yoga sutras of Patanjali",
-    description: "Learn Yoga sutras of Patanjalit.",
-    price: "$ 400",
-  },
+  // {
+  //   key: 15,
+  //   activity: "Learn Yoga sutras of Patanjali",
+  //   description: "Learn Yoga sutras of Patanjalit.",
+  //   price: "$ 400",
+  // },
 ];
 
 
