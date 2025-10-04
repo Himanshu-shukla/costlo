@@ -16,8 +16,7 @@ backend/.env
 FL-1/.env
 
 # Build outputs
-dist/
-build/
+
 coverage/
 
 # OS / Editor
