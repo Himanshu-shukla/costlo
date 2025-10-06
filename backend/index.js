@@ -8,23 +8,23 @@ const { sendUserDetails } = require("./utils/mailer");
 
 const app = express();
 
-app.use(cors({
-  origin: ["http://localhost:5173", "https://astrologer-arya.onrender.com"], // add your frontend URLs
-  credentials: true,
-}));
+// app.use(cors({
+//   origin: ["https://astrologerarya.com", "https://astrologer-arya.onrender.com"], // add your frontend URLs
+//   credentials: true,
+// }));
 
-app.use((req, res, next) => {
-  const origin = req.headers.origin || '*';
-  res.header('Access-Control-Allow-Origin', origin);
-  res.header('Vary', 'Origin');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  );
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  if (req.method === 'OPTIONS') return res.sendStatus(200);
-  next();
-});
+// app.use((req, res, next) => {
+//   const origin = req.headers.origin || '*';
+//   res.header('Access-Control-Allow-Origin', origin);
+//   res.header('Vary', 'Origin');
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   res.header('Access-Control-Allow-Headers',
+//     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+//   );
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+//   if (req.method === 'OPTIONS') return res.sendStatus(200);
+//   next();
+// });
 
 app.use(bodyParser.json());
 
