@@ -22,6 +22,20 @@ import {
 } from "../assets/index";
 
 const activityData = [
+
+  {
+    key: 15,
+    activity: "General horoscope reading",
+    description: "General horoscope reading",
+    price: "$ 492",
+  },
+
+  {
+    key: 13,
+    activity: "Ask any 3 questions",
+    description: "Ask any 3 questions",
+    price: "$ 300",
+  },
   {
     key: 1,
     activity: "Sexual Compatibility",
@@ -107,12 +121,7 @@ const activityData = [
     price: "$ 200",
   },
 
-  {
-    key: 13,
-    activity: "Ask any 3 questions for only",
-    description: "Ask any 3 questions for only...",
-    price: "$ 300",
-  },
+  
 
   {
     key: 14,
@@ -121,12 +130,7 @@ const activityData = [
     price: "$ 3000",
   },
 
-  // {
-  //   key: 15,
-  //   activity: "Learn Yoga sutras of Patanjali",
-  //   description: "Learn Yoga sutras of Patanjalit.",
-  //   price: "$ 400",
-  // },
+  
 ];
 
 
