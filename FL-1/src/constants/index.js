@@ -126,8 +126,8 @@ const activityData = [
   {
     key: 14,
     activity: "Past Life Regression Therapy",
-    description: "Past Life Regression Therapy. (Upto 4 sittings)",
-    price: "$ 3000",
+    description: "Past Life Regression Therapy. (Upto 3 sittings)",
+    price: "$ 4999",
   },
 
   
