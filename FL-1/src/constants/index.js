@@ -34,48 +34,48 @@ const activityData = [
     key: 13,
     activity: "Ask any 3 questions",
     description: "Ask any 3 questions",
-    price: "$ 300",
+    price: "$ 150",
   },
   {
     key: 1,
     activity: "Sexual Compatibility",
     description:
       "It is analyzed by studying the nakshatra etc. Between two partners.",
-    price: "$ 400",
+    price: "$ 492",
   },
   {
     key: 2,
     activity: "Matrimonial Compatibility",
     description:
       "An established method of ashta koota, dash koota etc. It analyses the compatibility between bride and groom.",
-    price: "$ 300",
+    price: "$ 492",
   },
   {
     key: 3,
     activity: "Boy Friend and Girl Friend Compatibility",
     description: "Compatibility check between boyfriend and girlfriend.",
-    price: "$ 300",
+    price: "$ 492",
   },
   {
     key: 4,
     activity: "Business Inclination Analysis",
     description:
       "According to your birth stars what business or occupation you are likely to excel.",
-    price: "$ 300",
+    price: "$ 393",
   },
   {
     key: 5,
     activity: "Relationship Analysis",
     description:
       "This aspect covers compatibility and relationship analysis of two individuals using their respective birth charts.",
-    price: "$ 300",
+    price: "$ 492",
   },
   {
     key: 6,
     activity: "Relocation Astrology Analysis",
     description:
       "Suppose you were born in New York and now live in Los Angeles, how does that affect your stars.",
-    price: "$ 300",
+    price: "$ 296",
   },
 
   {
@@ -83,42 +83,42 @@ const activityData = [
     activity: "Muhurat",
     description:
       "Auspicious time to start anything significant such as business, court case etc.",
-    price: "$ 300",
+    price: "$ 296",
   },
 
   {
     key: 8,
     activity: "Individual horoscope complete with dasha and antardashas",
     description: "Individual horoscope complete with dasha and antardashas.",
-    price: "$ 300",
+    price: "$ 492",
   },
 
   {
     key: 9,
     activity: "Marital and other disputes",
     description: "Marital and other disputes.",
-    price: "$ 300",
+    price: "$ 393",
   },
 
   {
     key: 10,
     activity: "Baby horoscope",
     description: "Baby horoscope.",
-    price: "$ 300",
+    price: "$ 296",
   },
 
   {
     key: 11,
     activity: "Career analysis",
     description: "Career analysis.",
-    price: "$ 300",
+    price: "$ 393",
   },
 
   {
     key: 12,
     activity: "Varsha Phal",
     description: "Annual solar return - the year ahead",
-    price: "$ 200",
+    price: "$ 393",
   },
 
   
