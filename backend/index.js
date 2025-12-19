@@ -8,23 +8,23 @@ const { sendUserDetails } = require("./utils/mailer");
 
 const app = express();
 
-// app.use(cors({
-//   origin: ["https://astrologerarya.com", "https://astrologer-arya.onrender.com"], // add your frontend URLs
-//   credentials: true,
-// }));
+// --- CORS FIX ---
+// Replace '*' with your specific frontend URL.
+// If you have multiple environments, you can use an array or process.env.FRONTEND_URL
+const allowedOrigins = ["http://localhost:5174", "http://localhost:3000"];
 
-// app.use((req, res, next) => {
-//   const origin = req.headers.origin || '*';
-//   res.header('Access-Control-Allow-Origin', origin);
-//   res.header('Vary', 'Origin');
-//   res.header('Access-Control-Allow-Credentials', 'true');
-//   res.header('Access-Control-Allow-Headers',
-//     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-//   );
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-//   if (req.method === 'OPTIONS') return res.sendStatus(200);
-//   next();
-// });
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
+}));
 
 app.use(bodyParser.json());
 
@@ -67,7 +67,7 @@ app.post("/api/paypal/create-order", async (req, res) => {
 
     res.json(orderRes.data);
   } catch (err) {
-    console.error(err);
+    console.error("PayPal Create Error:", err.response ? err.response.data : err.message);
     res.status(500).send("Failed to create PayPal order");
   }
 });
@@ -104,7 +104,7 @@ app.post("/api/paypal/capture-order", async (req, res) => {
 
     res.json(captureRes.data);
   } catch (err) {
-    console.error(err);
+    console.error("PayPal Capture Error:", err.response ? err.response.data : err.message);
     res.status(500).send("Failed to capture PayPal order");
   }
 });
@@ -114,16 +114,13 @@ app.post("/send-user-details", async (req, res) => {
   try {
     const { name, email, phone, message, dob, tob, pob } = req.body || {};
 
-    // Basic validation (customize as needed)
     if (!name || !email || !phone) {
       return res.status(400).json({ message: "name, email, and phone are required" });
     }
 
-    // Optional: simple email/phone format checks
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!emailOk) return res.status(400).json({ message: "Invalid email" });
 
-    // Example: accept 10–15 digits with optional +country-code
     const phoneOk = /^\+?[0-9]{10,15}$/.test(phone);
     if (!phoneOk) return res.status(400).json({ message: "Invalid phone" });
 
