@@ -11,7 +11,7 @@ const app = express();
 // --- CORS FIX ---
 // Replace '*' with your specific frontend URL.
 // If you have multiple environments, you can use an array or process.env.FRONTEND_URL
-const allowedOrigins = ["http://localhost:5174", "http://localhost:3000"];
+const allowedOrigins = ["http://localhost:5174", "http://localhost:3000", "https://astrologerarya.com"];
 
 app.use(cors({
   origin: function (origin, callback) {
